@@ -223,3 +223,20 @@ class connection(object):
                                             else:
                                                 if self.plaintext_login(user, f_pass.strip()): return True
                                     password.seek(0)
+        
+        #-uH for testing user and hashes from file(s) in secretdump format
+        for userhash in self.args.userhash:
+            if type(userhash) is file:
+                for line in userhash:
+                    if self.args.userhash:
+                        with sem:
+                            usr = line.strip().split(":")
+                            if len(usr) == 7:
+                                if len(usr[0].split("\\")) == 2:
+                                    l_username = usr[0].split("\\")[1]
+                                else:
+                                    l_username = usr[0]
+                                l_ntlm_hash = usr[3]
+                                if not self.over_fail_limit(l_username.strip()):
+                                    if self.hash_login(self.domain, l_username.strip(), l_ntlm_hash):
+                                        self.create_conn_obj()

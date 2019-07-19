@@ -84,6 +84,12 @@ def main():
                 args.hash.remove(ntlm_hash)
                 args.hash.append(open(ntlm_hash, 'r'))
 
+    elif hasattr(args, 'userhash') and args.userhash:
+        for file in args.userhash:
+            if os.path.exists(file):
+                args.userhash.remove(file)
+                args.userhash.append(open(file, 'r'))
+
     if hasattr(args, 'cred_id') and args.cred_id:
         for cred_id in args.cred_id:
             if '-' in str(cred_id):
