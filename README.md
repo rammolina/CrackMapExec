@@ -5,7 +5,7 @@
 ## Features Added
 
 ### Test users and hash pairs from file(s) in "secretdump" format (-uH parameter)
-The idea is to be able to take file(s) with multiple lines with useres and respective NTLM hashes in "secretdump" formatting, and test those using SMB for example againist another domain, or to retest these credentials obtained before to see if they are still working. The parameter -d <domain> is required.
+The idea is to be able to take file(s) with multiple lines with useres and respective NTLM hashes in "secretdump" formatting, and test those using SMB for example againist another domain, or to retest these credentials obtained before to see if they are still working. The parameter indicating the domain "-d \<domain_name\>" is required.
 
 **Example:**
 ```
