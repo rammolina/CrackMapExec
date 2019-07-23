@@ -7,7 +7,7 @@
 ### Test users and hash pairs from file(s) in "secretdump" format (-uH parameter)
 The idea is to be able to take file(s) with multiple lines with useres and respective NTLM hashes in "secretdump" formatting, and test those using SMB for example againist another domain, or to retest these credentials obtained before to see if they are still working. The parameter -d <domain> is required.
 
-** Example: **
+**Example:**
 ```
 (CrackMapExec) ~/t/CrackMapExec> cme smb 192.168.56.100 -d ramlab -uH hashes.txt
 SMB         192.168.56.100  445    DC01             [*] Windows Server 2016 Standard Evaluation 14393 x64 (name:DC01) (domain:ramlab) (signing:True) (SMBv1:True)
